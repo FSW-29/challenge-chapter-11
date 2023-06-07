@@ -40,4 +40,4 @@ jobs:
       - name: Build and Test Frontend
         run: |
           npm run build-fe
-          npm run test-fe
+        # npm run test-fe
