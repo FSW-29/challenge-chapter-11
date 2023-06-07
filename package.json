@@ -1,0 +1,17 @@
+{
+  "name": "binar-challenge-ch-11",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-be": "nodemon ./backend-app/bin/www",
+    "start-fe": "cd ./frontend-app && npm run start",
+    "test-be": "cd ./backend-app && npm run test",
+    "test-fe": "cd ./frontend-app && npm run test",
+    "build-fe": "cd ./frontend-app && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
