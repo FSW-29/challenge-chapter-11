@@ -28,9 +28,9 @@ jobs:
       - name: Install Dependencies Backend
         run: npm run install-be
 
-      # Melakukan Test untuk Backend
-      - name: Test Backend
-        run: npm run test-be
+      # Melakukan Test untuk Backend (file testnya belum buat)
+      #- name: Test Backend
+      #  run: npm run test-be
 
       # Menginstall Dependencies untuk Frontend
       - name: Install Dependencies Frontend
