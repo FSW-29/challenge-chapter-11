@@ -1,0 +1,21 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
+        "no-var": "warn",
+        "no-multiple-empty-lines": ["warn", { "max": 2 }],
+        "no-duplicate-imports": "warn",
+        "no-empty-function": "error",
+        "no-ternary": "warn",
+        "prefer-const": "warn",
+        "eqeqeq": "warn"
+    }
+}
