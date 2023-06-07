@@ -9,7 +9,9 @@
     "start-fe": "cd ./frontend-app && npm run start",
     "test-be": "cd ./backend-app && npm run test",
     "test-fe": "cd ./frontend-app && npm run test",
-    "build-fe": "cd ./frontend-app && npm run build"
+    "build-fe": "cd ./frontend-app && npm run build",
+    "install-be": "cd ./backend-app && npm install",
+    "install-fe": "cd ./frontend-app && npm install"
   },
   "keywords": [],
   "author": "",
