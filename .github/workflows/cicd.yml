@@ -26,7 +26,7 @@ jobs:
 
       # Menginstall Dependencies untuk Backend
       - name: Install Dependencies Backend
-        run: npm install-be
+        run: npm run install-be
 
       # Melakukan Test untuk Backend
       - name: Test Backend
@@ -34,7 +34,7 @@ jobs:
 
       # Menginstall Dependencies untuk Frontend
       - name: Install Dependencies Frontend
-        run: npm install-fe
+        run: npm run install-fe
 
       # Melakukan Build dan dilanjuti Test untuk Frontend
       - name: Build and Test Frontend
