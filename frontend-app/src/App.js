@@ -2,7 +2,11 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
+
 function App() {
+  // const baseUrl = 'localhost:8000/' || process.env.BASE_URL;
+  // `${baseUrl}api/v1/login`
+  // `${baseUrl}api/v1/register`
   return (
     <div className="App">
       <header className="App-header">
