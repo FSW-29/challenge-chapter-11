@@ -5,12 +5,12 @@ describe('Create Test for Register API: /api/v1/register', () => {
   // # Positive Case  
   test('Test Success Register and Store to Database', async () => {
     const inputUser = {
-      email: 'hellorussel@gmail.com',
-      username: 'russel666',
+      email: 'hellolaravel@gmail.com',
+      username: 'laravel2009',
       password: '12345678',
-      biodata: 'my name is russel',
-      city: 'Jakarta',
-      socialMedia: 'https://instagram.com/russel666'
+      biodata: 'my name is laravel',
+      city: 'California',
+      socialMedia: 'https://instagram.com/laravel'
     };
 
     const response = await request(app)
@@ -39,5 +39,41 @@ describe('Create Test for Register API: /api/v1/register', () => {
 
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty("message");
+  });
+
+  test('Test Register User by Using the Email that has Been Used', async () => {
+    const inputUser = {
+      email: 'hellogolang@gmail.com',
+      username: 'angular2011',
+      password: '12345678',
+      biodata: 'my name is angular',
+      city: 'California',
+      socialMedia: 'https://instagram.com/angular'
+    };
+
+    const response = await request(app)
+      .post("/api/v1/register")
+      .send(inputUser);
+
+      expect(response.status).toBe(400);
+      expect(response.body).toHaveProperty("message");
+  });
+
+  test('Test Register User by Using the Username that has Been Used', async () => {
+    const inputUser = {
+      email: 'helloangular@gmail.com',
+      username: 'golang2010',
+      password: '12345678',
+      biodata: 'my name is angular',
+      city: 'California',
+      socialMedia: 'https://instagram.com/angular'
+    };
+
+    const response = await request(app)
+      .post("/api/v1/register")
+      .send(inputUser);
+
+      expect(response.status).toBe(400);
+      expect(response.body).toHaveProperty("message");
   });
 });
