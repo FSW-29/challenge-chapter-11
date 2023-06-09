@@ -214,11 +214,11 @@ const RegisterPage = () => {
                             }
                           </button>
                           <Link
-                            href={ "/login" }
+                            to="/login"
                             className="btn btn-success"
                             target="__blank"
                           >
-                            Have Account? Login Here
+                            Dont Have Account? Signup Here
                           </Link>
                         </div>
                       </form>
