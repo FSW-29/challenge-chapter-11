@@ -1,12 +1,12 @@
 const { get, getDatabase, ref } = require("firebase/database");
 const firebase = require("../services/firebase");
 
-const game = async (req, res) => {
+const getGame = async (req, res) => {
   try {
-    const database = getDatabase(firebase);
+    const database = getDatabase();
 
     // > cari table game dari firebase
-    const gamesRef = ref(database, "game");
+    const gamesRef = ref(database, "games");
     const snapshot = await get(gamesRef);
 
     // > ambil seluruh data "game" dari db
@@ -20,18 +20,18 @@ const game = async (req, res) => {
     });
 
     return res.status(200).json({
-      "message": "Load Game Success!",
+      "message": "success",
       "statusCode": 200,
       "data": games,
     });
-    res.json(games.json());
+    //res.json(games.json());
   } catch (error) {
-    return res.status(500).json({ message: "error detected" });
+    return res.status(500).json({ "message": "error detected" });
   }
 };
 
 module.exports = {
-  game
+  getGame
 }
 
 // class GameController {
