@@ -1,9 +1,6 @@
 const request = require("supertest")
 const app = require("../app")
 
-
-
-
 describe("TEST get profile /", () => {
     test("/get data profile", done => { 
         request(app)
@@ -33,7 +30,7 @@ describe("SUCCESED Edit profile /profile", () => {
 
     test("SUCCESED Edit Profile, RESPONSE WITH message and token of user that edit it", done => {
         
-        let inputUser = {
+        const inputUser = {
             username: "Budi",
             biodata: "Hello world",
             city: "Jakarta",
@@ -46,7 +43,7 @@ describe("SUCCESED Edit profile /profile", () => {
             .end((err, res) => {
                 const { status, body } = res
                 access_token = res.body.access_token
-                let locked = res.body.locked
+                const locked = res.body.locked
 
                 if (err) {
                     done(err)
@@ -63,7 +60,7 @@ describe("SUCCESED Edit profile /profile", () => {
 
 describe("Failed Edit profile /profile", () => {
 
-        let inputUser = {
+    const inputUser = {
             username: "",
             biodata: "",
             city: "",
@@ -76,7 +73,7 @@ describe("Failed Edit profile /profile", () => {
                 .send(inputUser)
                 .end((err, res) => {
                     const { status, body } = res
-                    let timestamp = body.timestamp
+                    const timestamp = body.timestamp
     
                     if (err) {
                         expect(status).toBe(400)
