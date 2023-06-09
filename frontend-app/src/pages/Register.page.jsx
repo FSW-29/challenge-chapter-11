@@ -4,6 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { successRegister, failedRegister, loadingRegister  } from '../redux/actions/auth.action';
 import axios from 'axios';
 import NavbarAuthComponent from '../components/NavbarAuth.component';
+import dotenv from 'dotenv';
+dotenv.config();
+
+const base_url = "http://localhost:8000/" || process.env.REACT_BASE_URL;
 
 const RegisterPage = () => {
   // > Nama title
@@ -58,7 +62,7 @@ const RegisterPage = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/register', dataRegister);
+      const response = await axios.post(`${base_url}api/v1/register`, dataRegister);
       const responseRegister = response.data;
 
       console.info(responseRegister, 'hasil response register');

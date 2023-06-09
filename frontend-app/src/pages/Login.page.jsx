@@ -4,6 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { successLogin, failedLogin, loadingLogin  } from '../redux/actions/auth.action';
 import axios from 'axios';
 import NavbarAuthComponent from '../components/NavbarAuth.component';
+import dotenv from 'dotenv';
+dotenv.config();
+
+const base_url = "http://localhost:8000/" || process.env.REACT_BASE_URL;
 
 const LoginPage = (props) => {
   /* eslint-disable react/prop-types */
@@ -56,7 +60,7 @@ const LoginPage = (props) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/login', dataLogin);
+      const response = await axios.post(`${base_url}api/v1/login`, dataLogin);
       const responseLogin = response.data;
 
       console.info(responseLogin, 'hasil response login');
