@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { successRegister, failedRegister, loadingRegister  } from '../redux/actions/auth.action';
 import axios from 'axios';
 import NavbarAuthComponent from '../components/NavbarAuth.component';
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
-const base_url = "http://localhost:8000/" || process.env.REACT_BASE_URL;
+const base_url = "http://localhost:8000/";
 
 const RegisterPage = () => {
   // > Nama title
