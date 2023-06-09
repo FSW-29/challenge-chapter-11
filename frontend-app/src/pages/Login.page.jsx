@@ -6,8 +6,10 @@ import axios from 'axios';
 import NavbarAuthComponent from '../components/NavbarAuth.component';
 
 const LoginPage = (props) => {
+  /* eslint-disable react/prop-types */
+  const { dataLogin } = props;
   // > Nama title
-  document.title = props.data;
+  document.title = dataLogin;
 
   // > State
   const [email, setEmail] = useState('');
