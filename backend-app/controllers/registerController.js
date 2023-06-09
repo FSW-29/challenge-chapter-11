@@ -21,6 +21,37 @@ const registerUser = async (req, res) => {
   try {
     const database = getDatabase();
 
+    const usersRef = ref(database, "users");
+    const snapshot = await get(usersRef);
+
+    const users = [];
+    snapshot.forEach((child) => {
+      const childData = child.val();
+      users.push({
+        id: child.key,
+        ...childData
+      });
+    });
+
+    const usernameExists = users.find((user) => {
+      return user.username === username;
+    });
+    const emailExists = users.find((user) => {
+      return user.email === email
+    });
+
+    if (emailExists) {
+      return res.status(400).json({
+        "message": "Email has been used!"
+      });
+    }
+
+    if (usernameExists) {
+      return res.status(400).json({
+        "message": "Email has been used!"
+      });
+    }
+
     const auth = getAuth();
     const createNewUser = await createUserWithEmailAndPassword(auth, email, password);
 

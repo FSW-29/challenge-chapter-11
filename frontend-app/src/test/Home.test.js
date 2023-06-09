@@ -9,6 +9,7 @@ describe("TEST HOMEPAGE /", () => {
     test("render Home", done => {
         render(<Home />);
         const linkElement= screen.getByText(/Welcome to Home/i);
+        console.log(linkElement,'===> ini isi link element')
         //eslint-disable-next-line
         expect(linkElement).toBeInTheDocument();
         done()
