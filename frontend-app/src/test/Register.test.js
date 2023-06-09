@@ -50,7 +50,7 @@ describe('Testing Login Page', () => {
       </Provider>
     );
 
-    const buttonLogin = screen.getByText(/Have Account?/i);
+    const buttonLogin = screen.getByText(/Go to Login/i);
     //eslint-disable-next-line
     expect(buttonLogin).toBeInTheDocument();
   });

@@ -218,7 +218,7 @@ const RegisterPage = () => {
                             className="btn btn-success"
                             target="__blank"
                           >
-                            Dont Have Account? Signup Here
+                            Go to Login Page
                           </Link>
                         </div>
                       </form>
