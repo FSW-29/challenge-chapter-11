@@ -1,4 +1,5 @@
 import React from 'react';
+import NavbarMainComponent from '../../components/NavbarMain.component';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -22,6 +23,7 @@ export default function HomePage(){
 
     return(
         <>
+
             {
                 validLogin ? (
                     <>
@@ -35,7 +37,11 @@ export default function HomePage(){
             }
         
         
-        </>
         
+
+            <NavbarMainComponent />
+            <h1> Welcome to Home</h1>
+        </>
+
     )
 }
