@@ -5,9 +5,9 @@ import { successLogin, failedLogin, loadingLogin  } from '../redux/actions/auth.
 import axios from 'axios';
 import NavbarAuthComponent from '../components/NavbarAuth.component';
 
-const LoginPage = () => {
+const LoginPage = ({data}) => {
   // > Nama title
-  document.title = "Login";
+  document.title = data;
 
   // > State
   const [email, setEmail] = useState('');
@@ -107,7 +107,13 @@ const LoginPage = () => {
                   <div className="col-xl-6 justify-content-center align-items-center">
                     <div className="card-body p-md-5 text-black">
                       <h3 className="mb-5 text-uppercase text-center">
-                        Login Page
+                        {
+                          document.title=="Login Page" ? (
+                              "Login Page"
+                          ) : (
+                              "Sign In"
+                          )
+                        }
                       </h3>
                       {
                         loginUserRejected  ? (
