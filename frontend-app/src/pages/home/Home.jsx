@@ -5,6 +5,7 @@ import NavbarMainComponent from '../../components/NavbarMain.component';
 
 export default function HomePage(){
 
+
     const [validLogin, setValidLogin]=useState()
     useEffect(() =>{
         cekToken();
@@ -12,11 +13,8 @@ export default function HomePage(){
     },[])
 
     const cekToken = () =>{
-        if (!localStorage.getItem("token")) {
-            console.info('ok!')
-          }else{
+        if (localStorage.getItem("token")) {
             setValidLogin("Valid");
-
           }
     }
 
@@ -34,7 +32,6 @@ export default function HomePage(){
                     </>
                 )
             }
-
             <NavbarMainComponent />
             <h1> Welcome to Home</h1>
         </>

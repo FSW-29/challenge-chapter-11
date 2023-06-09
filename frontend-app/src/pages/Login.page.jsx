@@ -9,7 +9,9 @@ const LoginPage = (props) => {
   /* eslint-disable react/prop-types */
   const { dataLogin } = props;
   // > Nama title
+
   document.title = dataLogin;
+
 
   // > State
   const [email, setEmail] = useState('');
