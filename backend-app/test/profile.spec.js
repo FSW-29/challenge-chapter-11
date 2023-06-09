@@ -16,8 +16,10 @@ describe("TEST get profile /", () => {
                 }else {
                     expect(status).toBe(200)
                     expect(body).toHaveProperty("username", "exist")
+                    expect(body).toHaveProperty("email", "exist@gmail.com")
+                    done()
                 }
-                done()
+                
             })
     })
 })
@@ -47,8 +49,6 @@ describe("SUCCESED Edit profile /profile", () => {
                 let locked = res.body.locked
 
                 if (err) {
-                    expect(status).toBe(500)
-                    expect(body).toHaveProperty(error)
                     done(err)
                 }else {
                     expect(status).toBe(200)
