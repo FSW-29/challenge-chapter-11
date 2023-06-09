@@ -16,7 +16,8 @@ describe("TEST get game /", () => {
                 }else {
                     expect(status).toBe(200)
                     expect(body).toHaveProperty("message", "success")
-                    expect(body).toHaveProperty("data")
+                    expect(body).toHaveProperty("data_game")
+                    expect(body).toHaveProperty("data_leaderboard")
                 }
                 done()
             })
