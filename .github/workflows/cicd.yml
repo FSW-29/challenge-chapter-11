@@ -32,6 +32,10 @@ jobs:
       - name: Test Backend
         run: npm run test-be
 
+      # Menjalankan Eslint untuk backend
+      - name: Eslint Backend
+        run: npm run eslint-be
+
       # Menginstall Dependencies untuk Frontend
       - name: Install Dependencies Frontend
         run: npm run install-fe
