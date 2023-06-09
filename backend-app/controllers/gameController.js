@@ -9,6 +9,26 @@ class GameController {
         }
     }
 
+    static async checkGame(req,res) {
+        const {gameId}=req.body;
+
+        if(!gameId){
+            return res.status(400).json({
+                "message": "game id is empty"
+              })
+        }else{
+            return res.status(200).json({
+                "id":"3",
+                "desc":"ini deskripsi game",
+                "developer":"developergame",
+                "name":"Kelereng",
+                "image":"kelereng.jpg",
+                "src":"www",
+                "type":"racing"
+            })
+        }
+    }
+
     
 
 }

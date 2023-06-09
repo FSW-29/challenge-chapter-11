@@ -15,7 +15,7 @@ describe('Testing Login Page', () => {
     render(
       <Provider store={ store }>
         <MemoryRouter>
-          <LoginPage />
+          <LoginPage data={"Login Page"} />
         </MemoryRouter>
       </Provider>
     );
@@ -54,4 +54,29 @@ describe('Testing Login Page', () => {
     //eslint-disable-next-line
     expect(buttonLogin).toBeInTheDocument();
   });
+
+  test('data is Login MASUK SINI', () =>{
+      render(
+        <Provider store={ store }>
+          <MemoryRouter>
+            <LoginPage data={"Login Page"} />
+          </MemoryRouter>
+        </Provider>
+      );
+      const titleIsLogin = screen.getByText(/Login Page/i);
+      expect(titleIsLogin).toBeInTheDocument();
+    })
+     
+  test('data is Sign In', () =>{
+    render(
+      <Provider store={ store }>
+        <MemoryRouter>
+          <LoginPage data={"Sign In"} />
+        </MemoryRouter>
+      </Provider>
+    );
+    const titleIsLogin = screen.getByText(/Sign In/i);
+    expect(titleIsLogin).toBeInTheDocument();
+  });
+
 });

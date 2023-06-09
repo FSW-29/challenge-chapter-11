@@ -12,11 +12,8 @@ export default function ProfilePage(){
     },[])
 
     const cekToken = () =>{
-        if (!localStorage.getItem("token")) {
-
-          }else{
+        if (localStorage.getItem("token")) {
             setValidLogin("Valid");
-
           }
     }
 

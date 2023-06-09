@@ -21,21 +21,57 @@ describe("TEST get game /", () => {
             })
     })
 
-    //FAILED GET DATA GAME
-    test("/get data game failed", done => { 
+})
+
+describe("Test check game /", () =>{
+    //success get data game
+    test("/post check game success", done => {
+        
+        let userChoose={
+            gameId: "4"
+        }
+
         request(app)
-            .get("/game")
-            .end((err, res) => {
+            .post('/game')
+            .send(userChoose)
+            .end((err,res) =>{
                 const { status, body } = res
 
-                if (err) {
-                    expect(status).toBe(500)
-                    expect(body).toHaveProperty("message", "error detected")
+                if(err){
                     done(err)
-                }else {
+                }else{
+                    expect(status).toBe(200)
+                    expect(body).toHaveProperty("id", expect.any(String))
+                    expect(body).toHaveProperty("desc", expect.any(String))
+                    expect(body).toHaveProperty("developer", expect.any(String))
+                    expect(body).toHaveProperty("name", expect.any(String))
+                    expect(body).toHaveProperty("image", expect.any(String))
+                    expect(body).toHaveProperty("src", expect.any(String))
+                    expect(body).toHaveProperty("type", expect.any(String))
+                    done();
+                }
+            })
+    })
+
+    test("/post check game failed", done =>{
+
+        let userChoose={
+            gameId: ""
+        }
+        request(app)
+            .post('/game')
+            .send(userChoose)
+            .end((err,res) =>{
+                const { status, body } = res
+
+                if(err){
+                    expect(status).toBe(400)
+                    expect(body).toHaveProperty("message", expect.any(String))
+                    done(err)
+                }else{
                     done()
                 }
-                
             })
+
     })
 })
