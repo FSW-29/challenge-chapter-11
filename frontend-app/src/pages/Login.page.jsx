@@ -7,6 +7,9 @@ import NavbarAuthComponent from '../components/NavbarAuth.component';
 
 const LoginPage = ({data}) => {
   // > Nama title
+  LoginPage.propTypes={
+    data: PropTypes.string.isRequired
+  }
   document.title = data;
 
   // > State

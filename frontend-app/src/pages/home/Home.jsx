@@ -6,18 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function HomePage(){
 
-    let [validLogin, setValidLogin]=useState()
+
+    const [validLogin, setValidLogin]=useState()
     useEffect(() =>{
         cekToken();
         
     },[])
 
     const cekToken = () =>{
-        if (!localStorage.getItem("token")) {
-
-          }else{
+        if (localStorage.getItem("token")) {
             setValidLogin("Valid");
-
           }
     }
 
@@ -35,10 +33,6 @@ export default function HomePage(){
                     </>
                 )
             }
-        
-        
-        
-
             <NavbarMainComponent />
             <h1> Welcome to Home</h1>
         </>
