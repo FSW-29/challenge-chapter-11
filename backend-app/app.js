@@ -9,11 +9,12 @@ const usersRouter = require('./routes/users');
 const gameRouter = require('./routes/game');
 const profileRouter = require('./routes/profile');
 const authRouter = require('./routes/auth');
+require('dotenv').config()
 
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:3000'
+  origin: process.env.HOST
 }));
 
 app.use(logger('dev'));
