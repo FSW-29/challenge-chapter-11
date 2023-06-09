@@ -13,9 +13,7 @@ require('dotenv').config()
 
 const app = express();
 
-app.use(cors({
-  origin: process.env.HOST
-}));
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());

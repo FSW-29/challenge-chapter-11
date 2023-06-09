@@ -11,7 +11,8 @@
     "test-fe": "cd ./frontend-app && npm run test",
     "build-fe": "cd ./frontend-app && npm run build",
     "install-be": "cd ./backend-app && npm install",
-    "install-fe": "cd ./frontend-app && npm install"
+    "install-fe": "cd ./frontend-app && npm install",
+    "eslint-be": "cd ./backend-app && npm run eslint"
   },
   "keywords": [],
   "author": "",
