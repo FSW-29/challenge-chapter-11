@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import HomePage from "../pages/home/Home.jsx"
+import ProfilePage from "../pages/profile/profilePage.jsx"
 import React from 'react';
 
 
@@ -7,12 +7,12 @@ describe("TEST Profile Page /", () => {
 
     //eslint-disable-next-line
         //test render valid with access token
-        test("render Homepage with access token", done => {
+        test("render profile with access token", done => {
             localStorage.setItem("token", "token exist");
 
-            render(<HomePage />);
+            render(<ProfilePage />);
 
-            const linkElement= screen.getByText(/User already login, display Homepage/i);
+            const linkElement= screen.getByText(/Login valid/i);
             //eslint-disable-next-line
             expect(linkElement).toBeInTheDocument();
             localStorage.removeItem("token");
@@ -21,13 +21,13 @@ describe("TEST Profile Page /", () => {
         })
 
         //test render invalid because np access token
-        test("render HomePage without access token", done => {
-            render(<HomePage />);
+        test("render profile without access token", done => {
+            render(<ProfilePage />);
             
-            const linkElement= screen.getByText(/User doesnt login, display landingPage/i);
+            const linkElement= screen.getByText(/Login Invalid/i);
             //eslint-disable-next-line
             expect(linkElement).toBeInTheDocument();
- 
+
             done()
     
         })
