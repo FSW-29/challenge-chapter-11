@@ -29,7 +29,7 @@ describe("Test check game /", () =>{
     //success get data game
     test("/post check game success", done => {
         
-        let userChoose={
+        const userChoose={
             gameId: "4"
         }
 
@@ -57,7 +57,7 @@ describe("Test check game /", () =>{
 
     test("/post check game failed", done =>{
 
-        let userChoose={
+        const userChoose={
             gameId: ""
         }
         request(app)
