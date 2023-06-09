@@ -1,6 +1,8 @@
 const request = require('supertest');
 const app = require('../app');
 
+jest.useRealTimers();
+
 describe('Create Test for Login API: api/v1/login', () => {
   // # Positive Case
   test('Test Success Login', async () => {

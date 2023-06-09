@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavbarMainComponent from '../../components/NavbarMain.component';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 
 
 export default function HomePage(){

@@ -5,12 +5,13 @@ import { successLogin, failedLogin, loadingLogin  } from '../redux/actions/auth.
 import axios from 'axios';
 import NavbarAuthComponent from '../components/NavbarAuth.component';
 
-const LoginPage = ({data}) => {
+const LoginPage = (props) => {
+  /* eslint-disable react/prop-types */
+  const { dataLogin } = props;
   // > Nama title
-  LoginPage.propTypes={
-    data: PropTypes.string.isRequired
-  }
-  document.title = data;
+
+  document.title = dataLogin;
+
 
   // > State
   const [email, setEmail] = useState('');
@@ -111,7 +112,7 @@ const LoginPage = ({data}) => {
                     <div className="card-body p-md-5 text-black">
                       <h3 className="mb-5 text-uppercase text-center">
                         {
-                          document.title=="Login Page" ? (
+                          document.title === "Login Page" ? (
                               "Login Page"
                           ) : (
                               "Sign In"
