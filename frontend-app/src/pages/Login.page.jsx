@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { successLogin, failedLogin, loadingLogin  } from '../redux/actions/auth.action';
@@ -15,6 +15,19 @@ const LoginPage = () => {
 
   // > Navigate (untuk arahkan user kehalaman tertentu)
   const navigate = useNavigate();
+
+  let i = 0;
+  useEffect(() => {
+    if (i === 0) {
+      const checkAccessToken = () => {
+        if (localStorage.getItem('token')) {
+          navigate('/');
+        }
+      };
+      checkAccessToken();
+      i++;
+    }
+  }, [i]);
 
   // > dispatch
   const dispatch = useDispatch();
