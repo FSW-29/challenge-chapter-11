@@ -5,12 +5,13 @@ import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "..";
 
+//eslint-disable-next-line
 jest.mock('axios');
 
+//eslint-disable-next-line
 describe("TEST Home Page /", () => {
 
-    //eslint-disable-next-line
-        //test render valid with access token
+        //eslint-disable-next-line
         test("render Homepage with access token", done => {
             localStorage.setItem("token", "token exist");
 
@@ -31,6 +32,7 @@ describe("TEST Home Page /", () => {
         })
 
         //test render invalid because np access token
+        //eslint-disable-next-line
         test("render HomePage without access token", done => {
             render(
                 <Provider store={ store }>
