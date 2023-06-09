@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavbarMainComponent from '../../components/NavbarMain.component';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 
 
 export default function HomePage(){
 
-    let [validLogin, setValidLogin]=useState()
+    const [validLogin, setValidLogin]=useState()
     useEffect(() =>{
         cekToken();
         
@@ -14,7 +13,7 @@ export default function HomePage(){
 
     const cekToken = () =>{
         if (!localStorage.getItem("token")) {
-
+            console.info('ok!')
           }else{
             setValidLogin("Valid");
 
@@ -35,9 +34,6 @@ export default function HomePage(){
                     </>
                 )
             }
-        
-        
-        
 
             <NavbarMainComponent />
             <h1> Welcome to Home</h1>
