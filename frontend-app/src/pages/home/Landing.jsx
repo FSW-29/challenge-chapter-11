@@ -5,7 +5,7 @@ import CarouselGameListComponent from "../../components/CarouselGameListComponen
 
 import NavbarMainComponent from '../../components/NavbarMain.component';
 
-const HomePage = (props) => {
+const LandingPage = (props) => {
     console.log(props)
     const navigate=useNavigate()
 
@@ -69,7 +69,7 @@ const HomePage = (props) => {
   }, [game]);
 
   useEffect(() => {
-    cekToken();
+    // cekToken();
     
     // console.log(database,'===> isi get database')
     // console.log(authFirebase, '===> isi getAuth')
@@ -78,14 +78,14 @@ const HomePage = (props) => {
 
     // let userNum=null;
 
-  const cekToken = () => {
-    if (!localStorage.getItem("token")) {
-      const tokenLocal = localStorage.getItem("token");
-      console.log(tokenLocal, "masuk ga ya");
-      navigate("/login");
-      //navigate("/login");
-    }
-  };
+  // const cekToken = () => {
+  //   if (!localStorage.getItem("token")) {
+  //     const tokenLocal = localStorage.getItem("token");
+  //     console.log(tokenLocal, "masuk ga ya");
+  //     navigate("/login");
+  //     //navigate("/login");
+  //   }
+  // };
 
   const navigateToGameList = () => {
     navigate("/GameList");
@@ -115,7 +115,7 @@ const HomePage = (props) => {
   );
 };
 
-export default HomePage;
+export default LandingPage;
 
 // import React, { useEffect, useState } from 'react';
 // import NavbarMainComponent from '../../components/NavbarMain.component';
