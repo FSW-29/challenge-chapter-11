@@ -16,7 +16,6 @@ const LoginPage = (props) => {
 
   document.title = dataLogin;
 
-
   // > State
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
