@@ -24,6 +24,7 @@
         "no-duplicate-imports": "warn",
         "no-empty-function": "error",
         "prefer-const": "warn",
+        "no-aler": "off",
         "eqeqeq": "warn"
     }
 }
