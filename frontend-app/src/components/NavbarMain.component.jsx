@@ -27,11 +27,33 @@ const NavbarMainComponent = () => {
     navigate('/GameList');
   }
 
+  const handleRegister = () => {
+    navigate('/register');
+  }
+
+
+  const handleLogin = () => {
+    navigate('/login');
+  }
+
+  const handleProfile = () => {
+    navigate('/profile');
+  }
+
+  const handleLanding = () =>{
+    navigate('/')
+  }
+
+  const handleHome = () => {
+    navigate('/home')
+  }
+
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
-          <a className="navbar-brand" href={"/"}>
+          <a className="navbar-brand" onClick={handleLanding}>
             <img
               srcSet={
                 "https://w7.pngwing.com/pngs/87/586/png-transparent-next-js-hd-logo.png"
@@ -58,7 +80,7 @@ const NavbarMainComponent = () => {
                 <a
                   className="nav-link"
                   aria-current="page"
-                  href={"/home"}
+                  onClick={handleHome}
                   style={{ fontSize: "18px" }}
                 >
                   Home
@@ -82,7 +104,7 @@ const NavbarMainComponent = () => {
                       { login.usernameLogin }
                     </a>
                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a className="nav-link" href={'/profile'} style={{fontSize: '18px'}}>Profile</a></li>
+                      <li><a className="nav-link" onClick={handleProfile} style={{fontSize: '18px'}}>Profile</a></li>
                       <li><hr className="dropdown-divider" /></li>
                       {/* Minta tolong rapikan logout nya */}
                       {/* hapus 3 localstorage ini */}
@@ -98,9 +120,15 @@ const NavbarMainComponent = () => {
                     </ul>
                   </li>
                 ) : (
-                  <a href={"/register"} className="btn btn-md mx-2 my-3 btn-outline-primary">
+                  <>
+                  <a onClick={handleLogin} className="btn btn-md mx-2 my-3 btn-outline-primary">
+                    <b className="px-2 py-4">Login</b>
+                  </a>
+                  <a onClick={handleRegister} className="btn btn-md mx-2 my-3 btn-outline-primary">
                     <b className="px-2 py-4">Register Account</b>
                   </a>
+                  </>
+                  
                 )
               }
               {/* <Link href={"/register"} className="btn btn-md mx-2 my-3 btn-outline-primary">
