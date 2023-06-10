@@ -23,6 +23,10 @@ const NavbarMainComponent = () => {
     navigate('/login');
   }
 
+  const hanldeGameList = () =>{
+    navigate('/GameList');
+  }
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -63,8 +67,8 @@ const NavbarMainComponent = () => {
               <li className="nav-item">
                 <a
                   className="nav-link"
-                  href={"/GameList"}
                   style={{ fontSize: "18px" }}
+                  onClick={hanldeGameList}
                 >
                   Game List
                 </a>

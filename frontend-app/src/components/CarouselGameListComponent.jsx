@@ -1,6 +1,7 @@
-import React from "react"
-// import switchLeft from "/switch-left.svg";
-// import switchRight from "/switch-right.svg";
+import React from 'react';
+//import Image from "next/image";
+import switchLeft from "../assets/switch-left.svg";
+import switchRight from "../assets/switch-right.svg";
 
 export default function CarouselGameListComponent() {
   return (
@@ -52,7 +53,7 @@ export default function CarouselGameListComponent() {
                 data-bs-slide="prev"
               >
                 <span aria-hidden="true">
-                  {/* <img src={switchLeft} alt="" /> */}
+                  <img src={switchLeft} alt="" />
                 </span>
                 <span className="visually-hidden">Previous</span>
               </button>
@@ -84,7 +85,7 @@ export default function CarouselGameListComponent() {
                 data-bs-slide="next"
               >
                 <span aria-hidden="true">
-                  {/* <img src={switchRight} alt="" /> */}
+                  <img src={switchRight} alt="" />
                 </span>
                 <span className="visually-hidden">Next</span>
               </button>

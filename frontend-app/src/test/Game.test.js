@@ -1,7 +1,10 @@
 import { render, screen } from '@testing-library/react';
-import GamePage from "../pages/game/Game.jsx"
+import Game from "../pages/game/Game.jsx"
 import ServerError from '../pages/notfound/serverError.jsx';
 import React from 'react';
+import { MemoryRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "..";
 
 let listGame;
 
@@ -10,7 +13,13 @@ let listGame;
 describe("TEST gamepage /", () => {
 //eslint-disable-next-line
     test("render gamepage", done => {
-        render(<GamePage />);
+        render(
+                <Provider store={ store }>
+                    <MemoryRouter>
+                        <Game />
+                    </MemoryRouter>
+                </Provider>
+            );
         const linkElement= screen.getByText(/Welcome to Game/i);
         //eslint-disable-next-line
         expect(linkElement).toBeInTheDocument();
