@@ -19,19 +19,10 @@ let userNum=null;
 // }
 
 const getProfile = async (req,res) =>{
-    try{
-
         const database = getDatabase();
         const databaseFirebase = await get(child(ref(database), "users"));
-        let cekData = Object.values(databaseFirebase.val());
-    
-    
-        res.status(200).json(cekData)
-    
-        }catch(err){
-            res.status(400).json({"message":err.message});
-            console.log(err,"MASUK ERROR")
-        }
+        const cekData = Object.values(databaseFirebase.val());
+        res.status(200).json(cekData)    
 }
 
 // const getProfilePicture = async (req,res) =>{
@@ -69,12 +60,15 @@ const getProfile = async (req,res) =>{
 
 const editProfile = async(req,res) =>{
     const inputUser = req.body;
-    console.log(inputUser,"==> ini isi inputuser");
-
-    try{
+    // console.log(inputUser,"==> ini isi inputuser");
+    if(!inputUser){
+        return res.status(400).json({
+            "message": "Input user is empty"
+          })
+    }
         const database = getDatabase();
         const databaseFirebase = await get(child(ref(database), "users"));
-        let cekData = Object.values(databaseFirebase.val());
+        const cekData = Object.values(databaseFirebase.val());
 
         //looping untuk pencarian data user yang sesuai dengan uid
         for (let i = 0; i < cekData.length; i++) {
@@ -84,14 +78,14 @@ const editProfile = async(req,res) =>{
                 }
             }
             //ambil data /users menjadi kumpulan object of object
-            let collectionObject = databaseFirebase.val();
+            const collectionObject = databaseFirebase.val();
             //penampung untuk mengecek looping ke berapa
             let temp = 0;
             //penampung index /users/tempProperty dari firebase
             let tempProperty;
 
             //looping obbject in object
-            for (let property in collectionObject) {
+            for (const property in collectionObject) {
                 //kondisional buat pengecek apakah looping sudah sesuai dengan index array
                 if (temp === userNum) {
                     tempProperty = property;
@@ -105,11 +99,6 @@ const editProfile = async(req,res) =>{
 
             return res.status(200).json({"message": "Profile Successfully Updated!"})
 
-    }catch(err){
-        console.log(err,"==> ini error update");
-        return res.status(400).json({"message": "Profile update Failed"})
-
-    }
 }
 
 module.exports = {
