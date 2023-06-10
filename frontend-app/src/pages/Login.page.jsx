@@ -29,7 +29,7 @@ const LoginPage = (props) => {
     if (i === 0) {
       const checkAccessToken = () => {
         if (localStorage.getItem('token')) {
-          navigate('/');
+          navigate('/home');
         }
       };
       checkAccessToken();
@@ -83,7 +83,7 @@ const LoginPage = (props) => {
       setEmail('');
       setPassword('');
 
-      navigate('/');
+      navigate('/home');
     } catch (error) {
       dispatch(failedLogin(error));
       dispatch(loadingLogin(false));

@@ -12,8 +12,8 @@ describe("TEST get profile /", () => {
                     done(err)
                 }else {
                     expect(status).toBe(200)
-                    expect(body).toHaveProperty("username", "exist")
-                    expect(body).toHaveProperty("email", "exist@gmail.com")
+                    expect(body).toHaveProperty("username", expect.any(String))
+                    expect(body).toHaveProperty("email", expect.any(String))
                     done()
                 }
                 

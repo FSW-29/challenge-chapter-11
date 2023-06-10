@@ -75,7 +75,6 @@ describe('Create Test for Login API: api/v1/login', () => {
     const response = await request(app)
       .post('/api/v1/login')
       .send(inputUser);
-
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty("message");
   });

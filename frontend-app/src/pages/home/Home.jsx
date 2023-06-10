@@ -1,5 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+// import LandingDefinitionComponent from "../../components/LandingDefinitionComponent";
+import CarouselGameListComponent from "../../components/CarouselGameListComponent";
+
 import NavbarMainComponent from '../../components/NavbarMain.component';
+
 import axios from 'axios';
 import { useDispatch } from "react-redux";
 import {
@@ -10,11 +15,13 @@ import {
     gameNew,
     gameLeaderboard
 } from "../../redux/actions/game.action"
-// import { useDispatch, useSelector } from "react-redux";
 
-const base_url = "http://localhost:8000/";
+// export default function HomePage(){
 
-export default function HomePage(){
+const HomePage = (props) => {
+    console.log(props)
+    const base_url = "http://localhost:8000/";
+    const navigate=useNavigate()
     const dispatch = useDispatch();
 
     const [game, setGame] = useState();
@@ -39,6 +46,11 @@ export default function HomePage(){
         const typePuzzle = [];
         const typeAction = [];
         const typeNew = [];
+
+        // const cekToken = () =>{
+        // if (localStorage.getItem("token")) {
+        //     setValidLogin("Valid");
+        // }
 
         dataGame.forEach((element) => {
         if (element.type === "racing") {
@@ -81,35 +93,93 @@ export default function HomePage(){
     }, [game]);
 
 
-    const [validLogin, setValidLogin]=useState()
-    useEffect(() =>{
+    useEffect(() => {
         cekToken();
         
-    },[])
+        // console.log(database,'===> isi get database')
+        // console.log(authFirebase, '===> isi getAuth')
+        // console.log(userId,'===> isi auth current user uid')
+    }, []);
 
-    const cekToken = () =>{
-        if (localStorage.getItem("token")) {
-            setValidLogin("Valid");
+    // let userNum=null;
+
+    const cekToken = () => {
+        if (!localStorage.getItem("token")) {
+        const tokenLocal = localStorage.getItem("token");
+        console.log(tokenLocal, "masuk ga ya");
+        navigate("/login");
+        //navigate("/login");
+
         }
-    }
+    };
 
-    return(
+    const navigateToGameList = () => {
+        navigate("/GameList");
+    };
+
+    return (
         <>
-
-            {
-                validLogin ? (
-                    <>
-                        <h1>User already login, display Homepage</h1>
-                    </>
-                ) : (
-                    <>
-                        <h2>User doesnt login, display landingPage</h2>
-                    </>
-                )
-            }
-            <NavbarMainComponent />
-            <h1> Welcome to Home</h1>
+        {/* <NavbarHomeComponent propsPutUsername={props.propsSetUsername} /> */}
+        <NavbarMainComponent />
+        {/* <LandingCarouselComponent />*/}
+        <section className="h-100 bg-dark pt-3 text-center">
+            <CarouselGameListComponent />
+            {/* <LandingDefinitionComponent /> */}
+            {/* <GameListByCategoryComponent
+            propsCategory={"Top"}
+            propsHandleGame={racing}
+            /> */}
+            <button
+            type="button"
+            className="btn btn-outline-light mb-5"
+            onClick={navigateToGameList}
+            >
+            VIEW MORE
+            </button>
+        </section>
         </>
+    );
+};
 
-    )
-}
+export default HomePage;
+
+// import React, { useEffect, useState } from 'react';
+// import NavbarMainComponent from '../../components/NavbarMain.component';
+// // import { useDispatch, useSelector } from "react-redux";
+
+
+// export default function HomePage(){
+
+
+//     const [validLogin, setValidLogin]=useState()
+//     useEffect(() =>{
+//         cekToken();
+        
+//     },[])
+
+//     const cekToken = () =>{
+//         if (localStorage.getItem("token")) {
+//             setValidLogin("Valid");
+//           }
+//     }
+
+//     return(
+//         <>
+
+//             {
+//                 validLogin ? (
+//                     <>
+//                         <h1>User already login, display Homepage</h1>
+//                     </>
+//                 ) : (
+//                     <>
+//                         <h2>User doesnt login, display landingPage</h2>
+//                     </>
+//                 )
+//             }
+//             <NavbarMainComponent />
+//             <h1> Welcome to Home</h1>
+//         </>
+
+//     )
+// }

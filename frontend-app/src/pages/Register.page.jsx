@@ -30,7 +30,7 @@ const RegisterPage = () => {
     if (i === 0) {
       const checkAccessToken = () => {
         if (localStorage.getItem('token')) {
-          navigate('/');
+          navigate('/home');
         }
       };
       checkAccessToken();
