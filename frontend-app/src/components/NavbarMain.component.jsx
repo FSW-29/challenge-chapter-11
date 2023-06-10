@@ -27,6 +27,10 @@ const NavbarMainComponent = () => {
     navigate('/GameList');
   }
 
+  const handleRegister = () => {
+    navigate('/register');
+  }
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -98,7 +102,7 @@ const NavbarMainComponent = () => {
                     </ul>
                   </li>
                 ) : (
-                  <a href={"/register"} className="btn btn-md mx-2 my-3 btn-outline-primary">
+                  <a onClick={handleRegister} className="btn btn-md mx-2 my-3 btn-outline-primary">
                     <b className="px-2 py-4">Register Account</b>
                   </a>
                 )
