@@ -1,24 +1,123 @@
-import { ref, get, child, getDatabase, update } from "firebase/database";
+const { ref, get, child, getDatabase, update } = require('firebase/database');
 const firebase = require('../services/firebase');
+// const {getStorage, ref : refStorage, uploadBytesResumable, getDownloadURL} = require('firebase/storage');
 
+
+let userNum=null;
+
+// let tokenFromClient=null;
+
+// const setToken = async (req,res) =>{
+//     try{
+//         const tokenCurrentUser = req.body;
+//         tokenFromClient= tokenCurrentUser.token;
+
+//         console.log(tokenFromClient,"==> ini isi token From Client")
+//     }catch(err){
+//         console.log(err, "masuk error setToken")
+//     }
+// }
 
 const getProfile = async (req,res) =>{
     try{
 
-        const database = getDatabase(firebase);
+        const database = getDatabase();
         const databaseFirebase = await get(child(ref(database), "users"));
         let cekData = Object.values(databaseFirebase.val());
     
     
-        res.json(cekData)
+        res.status(200).json(cekData)
     
         }catch(err){
+            res.status(400).json({"message":err.message});
             console.log(err,"MASUK ERROR")
         }
 }
 
+// const getProfilePicture = async (req,res) =>{
+//     const { tokenCurrentUser } = req.body;
+//     console.log(tokenCurrentUser,"ini token di get Profile")
+
+//     try{
+//         const storage=getStorage(firebase);
+//         const downloadURL=await getDownloadURL(refStorage(storage, `profile/${tokenCurrentUser}`))
+//         return res.status(200).json({"downloadURL":downloadURL})
+
+//     }catch(err){
+//         console.log(err)
+//     }
+// }
+
+// const updateProfilePicture = async (req,res) => {
+//     const fileUser = req.body;
+//     console.log(fileUser, "==> ini file user backend updateProfilePicture")
+//     console.log(tokenFromClient,"===> ini token yang disimpan server")
+//     try{
+//         const storage=getStorage(firebase);
+
+//         const storageRef=refStorage(storage, `profile/${tokenFromClient}`)
+
+//         uploadBytesResumable(storageRef, fileUser)
+
+//         return res.status(200).json({"message":"Profile picture updated"})
+
+//     }catch(err){
+//         console.log(err)
+//         return res.status(400).json({"messaged":"Profile picture failed to update"})
+//     }
+// }
+
+const editProfile = async(req,res) =>{
+    const inputUser = req.body;
+    console.log(inputUser,"==> ini isi inputuser");
+
+    try{
+        const database = getDatabase();
+        const databaseFirebase = await get(child(ref(database), "users"));
+        let cekData = Object.values(databaseFirebase.val());
+
+        //looping untuk pencarian data user yang sesuai dengan uid
+        for (let i = 0; i < cekData.length; i++) {
+            //kondisinal untuk mengambil index array yang sesuai dengan uid
+                if (cekData[i].id === inputUser.tokenCurrentUser) {
+                    userNum = i;
+                }
+            }
+            //ambil data /users menjadi kumpulan object of object
+            let collectionObject = databaseFirebase.val();
+            //penampung untuk mengecek looping ke berapa
+            let temp = 0;
+            //penampung index /users/tempProperty dari firebase
+            let tempProperty;
+
+            //looping obbject in object
+            for (let property in collectionObject) {
+                //kondisional buat pengecek apakah looping sudah sesuai dengan index array
+                if (temp === userNum) {
+                    tempProperty = property;
+                }
+                temp++;
+            } 
+            
+            const updates = {};
+            updates["/users/" + tempProperty] = inputUser;
+            update(ref(database), updates);
+
+            return res.status(200).json({"message": "Profile Successfully Updated!"})
+
+    }catch(err){
+        console.log(err,"==> ini error update");
+        return res.status(400).json({"message": "Profile update Failed"})
+
+    }
+}
+
 module.exports = {
-    getProfile
+    getProfile,
+    // getProfilePicture,
+    // updateProfilePicture,
+    editProfile,
+    // setToken
   }
   
 
