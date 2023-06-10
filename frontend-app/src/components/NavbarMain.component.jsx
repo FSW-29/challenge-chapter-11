@@ -31,6 +31,7 @@ const NavbarMainComponent = () => {
     navigate('/register');
   }
 
+
   const handleLogin = () => {
     navigate('/login');
   }
@@ -46,6 +47,7 @@ const NavbarMainComponent = () => {
   const handleHome = () => {
     navigate('/home')
   }
+
 
   return (
     <>
