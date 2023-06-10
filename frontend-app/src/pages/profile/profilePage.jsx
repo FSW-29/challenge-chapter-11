@@ -39,6 +39,7 @@ const ProfilePage = () =>{
 
         const cekToken = () =>{
             if (!localStorage.getItem("token")) {
+                alert("no access token, login first");
                 navigate("/login");
               }
         }
@@ -46,11 +47,12 @@ const ProfilePage = () =>{
         const fetchProfPic = async () =>{
             try{
                 let tokenCurrentUser = localStorage.getItem("token");
-                const storage=getStorage(firebase);
-                const downloadURL=await getDownloadURL(refStorage(storage, `profile/${tokenCurrentUser}`))
+                const response = await axios.post(`${base_url}profile/picture`, tokenCurrentUser);
+                const responseProfilePicture = response.downloadURL;
+
                 // const pathReference = refStorage(storage, `profile/${tokenCurrentUser}`);
-                setUserProfilePicture(downloadURL);
-                console.log(downloadURL, '==> ini preferences download')
+                setUserProfilePicture(responseProfilePicture);
+                console.log(responseProfilePicture, '==> ini preferences download')
     
     
             }catch(err){
@@ -61,7 +63,7 @@ const ProfilePage = () =>{
         let userNum=null;
         const fetchData = async () =>{
             try{
-                const data=await fetch('/api/profile/users')
+                const data=await fetch(`${base_url}/profile`)
                 let cekData=await data.json()
 
 
@@ -92,74 +94,51 @@ const ProfilePage = () =>{
         const handleEdit = async (event) =>{
             event.preventDefault()
             try{
-                const data=await fetch('/api/profile/users')
-                    let cekData=await data.json()
-    
-                    let tokenCurrentUser = localStorage.getItem("token");
-    
-    
-    
-                    //looping untuk pencarian data user yang sesuai dengan uid
-                    for (let i = 0; i < cekData.length; i++) {
-                    //kondisinal untuk mengambil index array yang sesuai dengan uid
-                        if (cekData[i].id === tokenCurrentUser) {
-                            userNum = i;
-                        }
-                    }
-                    //ambil data /users menjadi kumpulan object of object
-                    const databaseFirebase = await get(child(ref(database), "users"));
-                    let collectionObject = databaseFirebase.val();
-                    //penampung untuk mengecek looping ke berapa
-                    let temp = 0;
-                    //penampung index /users/tempProperty dari firebase
-                    let tempProperty;
-    
-                    //looping obbject in object
-                    for (let property in collectionObject) {
-                        //kondisional buat pengecek apakah looping sudah sesuai dengan index array
-                        if (temp === userNum) {
-                            tempProperty = property;
-                        }
-                        temp++;
-                    }
-                    //ambil data dari input user
-                    let tempCity, tempBiodata, tempSocialMedia, tempUsername;
-                    if (!userUsername) {
-                        tempUsername = cekData[Number(userNum)].username;
-                    } else {
-                        tempUsername = userUsername;
-                    }
-                    if (!userCity) {
-                        tempCity = cekData[Number(userNum)].city;
-                    } else {
-                        tempCity = userCity;
-                    }
-                    if (!userBiodata) {
-                        tempBiodata = cekData[Number(userNum)].biodata;
-                    } else {
-                        tempBiodata = userBiodata;
-                    }
-                    if (!userSocialMedia) {
-                        tempSocialMedia = cekData[Number(userNum)].social_media;
-                    } else {
-                        tempSocialMedia = userSocialMedia;
-                    }
-                    const inputUser = {
-                        email: cekData[Number(userNum)].email,
-                        username: tempUsername,
-                        id: cekData[Number(userNum)].id,
-                        password: cekData[Number(userNum)].password,
-                        total_score: cekData[Number(userNum)].total_score,
-                        city: tempCity,
-                        biodata: tempBiodata,
-                        social_media: tempSocialMedia,
-                    };
-    
-                    const updates = {};
-                    updates["/users/" + tempProperty] = inputUser;
-                    update(ref(database), updates);
-                    alert("Profile Successfully Updated!");
+
+                //ambil data dari input user
+                let tempCity, tempBiodata, tempSocialMedia, tempUsername;
+                if (!userUsername) {
+                    tempUsername = userProfile.username;
+                } else {
+                    tempUsername = userUsername;
+                }
+                if (!userCity) {
+                    tempCity = userProfile.city;
+                } else {
+                    tempCity = userCity;
+                }
+                if (!userBiodata) {
+                    tempBiodata = userProfile.biodata;
+                } else {
+                    tempBiodata = userBiodata;
+                }
+                if (!userSocialMedia) {
+                    tempSocialMedia = userProfile.social_media;
+                } else {
+                    tempSocialMedia = userSocialMedia;
+                }
+                const inputUser = {
+                    email: userProfile.email,
+                    username: tempUsername,
+                    id: userProfile.id,
+                    password: userProfile.password,
+                    total_score: userProfile.total_score,
+                    city: tempCity,
+                    biodata: tempBiodata,
+                    social_media: tempSocialMedia,
+                };
+
+                let tokenCurrentUser = localStorage.getItem("token");
+
+                let postData={inputUser,tokenCurrentUser}
+
+                const response = await axios.post(`${base_url}profile`, postData);
+
+                
+                    alert(response);
+
                     navigate('/home')
+                    
             } catch (err) {
                 console.log(err);
             }
@@ -167,17 +146,18 @@ const ProfilePage = () =>{
 
         const handleUpdatePicture = async (e) =>{
             e.preventDefault();
-    
-            let fileName=fileUser.name
-            const storage= getStorage(firebase)
-    
-            let tokenCurrentUser = localStorage.getItem("token");
-    
-    
-            const storageRef=refStorage(storage, `profile/${tokenCurrentUser}`)
-    
-            const uploadImage = uploadBytesResumable(storageRef, fileUser)
-            navigate('/home')
+
+            try{
+                let tokenCurrentUser = localStorage.getItem("token");
+                let data={tokenCurrentUser, fileUser}
+                const response = await axios.post(`${base_url}profile/updatePicture`, data);
+                console.log(response)
+                alert("profile picture updated");
+                navigate('/home')
+
+            }catch(err){
+                console.log(err)
+            }    
         }
 
         const handleFile = (e) =>{

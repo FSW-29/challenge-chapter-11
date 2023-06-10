@@ -4,6 +4,7 @@ import Home from './pages/home/Home';
 import LoginPage from './pages/Login.page';
 import RegisterPage from './pages/Register.page';
 import UploadFile from './components/UploadFile';
+import ProfilePage from './pages/profile/profilePage';
 
 function App() {
   // const baseUrl = 'localhost:8000/' || process.env.BASE_URL;
@@ -16,6 +17,7 @@ function App() {
         <Route path='/register' element={ <RegisterPage /> } />
         <Route path='/login' element={ <LoginPage dataLogin={"Login Page"}/> } />
         <Route path='/upload' element={ <UploadFile /> } />
+        <Route path='/profile' element={<ProfilePage/>} />
       </Routes>
     </BrowserRouter>
   );
