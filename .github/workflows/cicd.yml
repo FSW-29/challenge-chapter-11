@@ -1,0 +1,47 @@
+name: CHALLENGE11-CICD
+# Nama untuk workflow
+
+on:
+  push:
+    branches:
+      - development
+# Menentukan kapan 'workflow' harus dijalankan.
+# Dalam kasus ini 'workflow' akan terpicu pada saat push ke branch development.
+
+# Daftar pekerjaan yang harus dikerjakan
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Menentukan OS yang digunakan untuk menjalankan 'jobs'
+
+    # Langkah-langka yang akan dikerjakan
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Menginstall Dependencies untuk Backend
+      - name: Install Dependencies Backend
+        run: npm run install-be
+
+      # Melakukan Test untuk Backend (file testnya belum buat)
+      - name: Test Backend
+        run: npm run test-be
+
+      # Menjalankan Eslint untuk backend
+      - name: Eslint Backend
+        run: npm run eslint-be
+
+      # Menginstall Dependencies untuk Frontend
+      - name: Install Dependencies Frontend
+        run: npm run install-fe
+
+      # Melakukan Build dan dilanjuti Test untuk Frontend
+      - name: Build and Test Frontend
+        run: |
+          npm run build-fe
+          npm run test-fe
