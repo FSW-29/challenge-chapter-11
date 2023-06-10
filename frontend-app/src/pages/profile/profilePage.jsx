@@ -19,6 +19,8 @@ const ProfilePage = () =>{
         const [userCity, setUserCity] = useState();
         const [userBiodata, setUserBiodata] = useState();
         const [userSocialMedia, setUserSocialMedia] = useState();
+
+        const [stateToken, setStateToken]= useState();
         // const [userProfilePicture, setUserProfilePicture]=useState();
 
         // const [fileUser, setFileUser]=useState();
@@ -33,8 +35,11 @@ const ProfilePage = () =>{
 
         const cekToken = () =>{
             if (!localStorage.getItem("token")) {
+                setStateToken(null);
                 alert("no access token, login first");
                 navigate("/login");
+              }else{
+                setStateToken("valid");
               }
         }
 
@@ -185,104 +190,116 @@ const ProfilePage = () =>{
             <>
             <NavbarMainComponent />
             {
-                userProfile ? (
-                    <>
-                        <div className="container border rounded border-info mt-3">
-                        <h1>Profile Page</h1>
-                            {userProfile.total_score > 9 && (
-                                <img src="assets/badge/silver.png" height={50} width={50}></img>
-                            )}
-                            {userProfile.total_score > 99 && (
-                                <img src="assets/badge/gold.png" height={50} width={50}></img>
-                            )}
-                            {userProfile.total_score > 999 && (
-                                <img src="assets/badge/platinum.png" height={50} width={50}></img>
-                            )}
-                        
-                        <form onSubmit={handleEdit}>
-                            <div className="mb-3 rounded border">
-                                <label className="form-label">
-                                    <b>Username</b>
-                                </label>
-                                 <p className="text-muted">{userProfile.username}</p>
-                                <label className="blockquote-footer">
-                                    <strong>Edit Username</strong>
-                                </label>
-                                    <input
-                                    type="text"
-                                    className="form-control"
-                                    onChange={(e) => setUserUsername(e.target.value)}
-                                    />
-                            </div>
-                            <div className="mb-3 rounded border">
-                                <label className="form-label">
-                                    <b>Email</b>
-                                </label>
-                                 <p className="text-muted">{userProfile.email}</p>
-                            </div>
-                            <div className="mb-3 rounded border">
-                                <label className="form-label">
-                                    <b>City</b>
-                                </label>
-                                 <p className="text-muted">{userProfile.city}</p>
-                                <label className="blockquote-footer">
-                                    <strong>Edit City</strong>
-                                </label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    onChange={(e) => setUserCity(e.target.value)}
-                                />
-                            </div>
-                            <div className="mb-3 rounded border">
-                                <label className="form-label">
-                                    <b>Biodata</b>
-                                </label>
-                                 <p className="text-muted">{userProfile.biodata}</p>
-                                <label className="blockquote-footer">
-                                    <strong>Edit Biodata</strong>
-                                </label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    onChange={(e) => setUserBiodata(e.target.value)}
-                                />
-                            </div>
-                            <div className="mb-3 rounded border">
-                                <label className="form-label">
-                                    <b>Social Media</b>
-                                </label>
-                                    <a href={userProfile.social_media} className="link-primary">
-                                        <br />
-                                            Go to User Social Media
-                                        <br />
-                                    </a>
-                                
-                                <label className="blockquote-footer">
-                                    <strong>Edit Social media</strong>
-                                </label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    onChange={(e) => setUserSocialMedia(e.target.value)}
-                                />
-                            </div>
-                            <div className="mb-3 rounded border">
-                                <label className="form-label">
-                                    <b>Total Score</b>
-                                </label>
-                                <p className="text-muted">{userProfile.total_score}</p>
-                            </div>
-                            <button type="submit" className="btn btn-primary">
-                                Edit Profile
-                            </button>
-                        </form>
-                        </div>
-                    </>
+                stateToken ? (
+                        <>
+                                {
+                                    userProfile ? (
+                                        <>
+                                            <div className="container border rounded border-info mt-3">
+                                            <h1>Profile Page</h1>
+                                                {userProfile.total_score > 9 && (
+                                                    <img src="assets/badge/silver.png" height={50} width={50}></img>
+                                                )}
+                                                {userProfile.total_score > 99 && (
+                                                    <img src="assets/badge/gold.png" height={50} width={50}></img>
+                                                )}
+                                                {userProfile.total_score > 999 && (
+                                                    <img src="assets/badge/platinum.png" height={50} width={50}></img>
+                                                )}
+                                            
+                                            <form onSubmit={handleEdit}>
+                                                <div className="mb-3 rounded border">
+                                                    <label className="form-label">
+                                                        <b>Username</b>
+                                                    </label>
+                                                    <p className="text-muted">{userProfile.username}</p>
+                                                    <label className="blockquote-footer">
+                                                        <strong>Edit Username</strong>
+                                                    </label>
+                                                        <input
+                                                        type="text"
+                                                        className="form-control"
+                                                        onChange={(e) => setUserUsername(e.target.value)}
+                                                        />
+                                                </div>
+                                                <div className="mb-3 rounded border">
+                                                    <label className="form-label">
+                                                        <b>Email</b>
+                                                    </label>
+                                                    <p className="text-muted">{userProfile.email}</p>
+                                                </div>
+                                                <div className="mb-3 rounded border">
+                                                    <label className="form-label">
+                                                        <b>City</b>
+                                                    </label>
+                                                    <p className="text-muted">{userProfile.city}</p>
+                                                    <label className="blockquote-footer">
+                                                        <strong>Edit City</strong>
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        className="form-control"
+                                                        onChange={(e) => setUserCity(e.target.value)}
+                                                    />
+                                                </div>
+                                                <div className="mb-3 rounded border">
+                                                    <label className="form-label">
+                                                        <b>Biodata</b>
+                                                    </label>
+                                                    <p className="text-muted">{userProfile.biodata}</p>
+                                                    <label className="blockquote-footer">
+                                                        <strong>Edit Biodata</strong>
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        className="form-control"
+                                                        onChange={(e) => setUserBiodata(e.target.value)}
+                                                    />
+                                                </div>
+                                                <div className="mb-3 rounded border">
+                                                    <label className="form-label">
+                                                        <b>Social Media</b>
+                                                    </label>
+                                                        <a href={userProfile.social_media} className="link-primary">
+                                                            <br />
+                                                                Go to User Social Media
+                                                            <br />
+                                                        </a>
+                                                    
+                                                    <label className="blockquote-footer">
+                                                        <strong>Edit Social media</strong>
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        className="form-control"
+                                                        onChange={(e) => setUserSocialMedia(e.target.value)}
+                                                    />
+                                                </div>
+                                                <div className="mb-3 rounded border">
+                                                    <label className="form-label">
+                                                        <b>Total Score</b>
+                                                    </label>
+                                                    <p className="text-muted">{userProfile.total_score}</p>
+                                                </div>
+                                                <button type="submit" className="btn btn-primary">
+                                                    Edit Profile
+                                                </button>
+                                            </form>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <h1>Loading....</h1>
+                                    )
+                                }
+
+                        </>
                 ) : (
-                    <h1>Loading....</h1>
+                        <>
+                        <h1>Login Invalid</h1>
+                        </>
                 )
             }
+            
         </>
         )
 }
